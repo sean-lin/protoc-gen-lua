@@ -51,16 +51,16 @@ function _SimpleSizer(compute_value_size)
         if is_packed then
             local VarintSize = _VarintSize
             return function(value)
-                result = 0
-                for element in value do
+                local result = 0
+                for _, element in ipairs(value) do
                     result = result + compute_value_size(element)
                 end
                 return result + VarintSize(result) + tag_size
             end
         elseif is_repeated then
             return function(value)
-                result = tag_size * #value
-                for element in value do
+                local result = tag_size * #value
+                for _, element in ipairs(value) do
                     result = result + compute_value_size(element)
                 end
                 return result
@@ -79,16 +79,16 @@ function _ModifiedSizer(compute_value_size, modify_value)
         if is_packed then
             local VarintSize = _VarintSize
             return function (value)
-                result = 0
-                for element in value do
+                local result = 0
+                for _, element in ipairs(value) do
                     result = result + compute_value_size(modify_value(element))
                 end
                 return result + VarintSize(result) + tag_size
             end
         elseif is_repeated then
             return function (value)
-                result = tag_size * #value
-                for element in value do
+                local result = tag_size * #value
+                for _, element in ipairs(value) do
                     result = result + compute_value_size(modify_value(element))
                 end
                 return result

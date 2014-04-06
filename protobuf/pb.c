@@ -144,7 +144,7 @@ static int pack_fixed64(lua_State *L, uint8_t* value){
 #ifdef IS_LITTLE_ENDIAN
     lua_pushlstring(L, (char*)value, 8);
 #else
-    uint64_t v = htole32(*(uint64_t*)value);
+    uint64_t v = htole64(*(uint64_t*)value);
     lua_pushlstring(L, (char*)&v, 8);
 #endif
     return 0;
