@@ -148,7 +148,7 @@ class Env(object):
             node = self.lookup_name(type_name)
         except:
             # if the child doesn't be founded, it must be in this file
-            return type_name[len('.'.join(self.package)) + 2:]
+            return type_name[len('.'.join(self.package)) + 1:]
         if node.filename != self.filename:
             return node.filename + '_pb.' + node.get_local_name()
         return node.get_local_name()
