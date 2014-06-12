@@ -25,7 +25,12 @@
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
+
+#ifdef _ALLBSD_SOURCE
+#include <machine/endian.h>
+#else
 #include <endian.h>
+#endif
 
 #if __BYTE_ORDER == __LITTLE_ENDIAN
 #define IS_LITTLE_ENDIAN
